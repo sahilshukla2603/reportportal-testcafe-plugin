@@ -1,14 +1,14 @@
 <p align='center'>
-  <a href='https://www.npmjs.com/package/testcafe-reportportal-plugin'>
+  <a href='https://www.npmjs.com/package/testcafe-reporter-reportportal-plugin-sap'>
     <img src='https://img.shields.io/npm/v/testcafe-reporter-reportportal-plugin/latest?style=plastic' target='_blank' />
   </a>
-  <a href='https://npmjs.org/package/testcafe-reportportal-plugin' style='width:25px;height:20px;'>
+  <a href='https://npmjs.org/package/testcafe-reporter-reportportal-plugin-sap' style='width:25px;height:20px;'>
     <img src='https://img.shields.io/npm/dm/testcafe-reporter-reportportal-plugin.svg?color=blue&style=plastic' target='_blank' />
   </a>
   <a href='https://github.com/danitseitlin/reportportal-testcafe-plugin-v2/issues' style='width:25px;height:20px;'>
     <img src='https://img.shields.io/github/issues/danitseitlin/reportportal-testcafe-plugin?style=plastic' target='_blank' />
   </a>
-  <a href='https://npmjs.org/package/testcafe-reportportal-plugin' style='width:25px;height:20px;'>
+  <a href='https://npmjs.org/package/testcafe-reporter-reportportal-plugin-sap' style='width:25px;height:20px;'>
     <img src='https://img.shields.io/bundlephobia/min/testcafe-reporter-reportportal-plugin/latest?style=plastic' target='_blank' />
   </a>
   <a href='https://github.com/danitseitlin/reportportal-testcafe-plugin-v2/commits/master'>
@@ -25,7 +25,7 @@ This is the **reportportal-plugin-v2** reporter plugin for [TestCafe](http://dev
 
 ## Install the reporter via NPM
 ```
-npm i testcafe-reportportal-plugin@latest --save-dev
+npm i testcafe-reporter-reportportal-plugin-sap@latest --save-dev
 ```
 
 ## Use the reporter in your TestCafe test run

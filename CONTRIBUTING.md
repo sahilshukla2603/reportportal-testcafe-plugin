@@ -4,7 +4,7 @@
 Run `npm i` in the root of the project, in order to install all the NPM dependencies
 
 ## Compile your code, and build your local reporter
-In order to be able to test your latest report changes, please run `npm run build-local-reporter` which will build the code via Babel and will relink the project to the reporter `testcafe-reportportal-plugin`.
+In order to be able to test your latest report changes, please run `npm run build-local-reporter` which will build the code via Babel and will relink the project to the reporter `testcafe-reporter-reportportal-plugin-sap`.
 In your tests, make sure you use the report with one of the reporter options [here](https://github.com/sahilshukla2603/reportportal-testcafe-plugin#use-the-reporter-in-your-testcafe-test-run)
 
 ## Running tests
