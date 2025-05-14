@@ -1,11 +1,11 @@
 {
-  "name": "testcafe-reporter-reportportal-plugin",
+  "name": "testcafe-reporter-reportportal-plugin-v2",
   "version": "0.0.9",
   "description": "Report Portal TestCafe reporter",
-  "repository": "https://github.com/danitseitlin/reportportal-testcafe-plugin",
+  "repository": "https://github.com/sahilshukla2603/reportportal-testcafe-plugin",
   "author": {
-    "name": "Dani Tseitlin",
-    "url": "https://github.com/danitseitlin"
+    "name": "Sahil Shukla",
+    "url": "https://github.com/sahilshukla2603/"
   },
   "main": "lib/index",
   "files": [
