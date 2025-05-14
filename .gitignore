@@ -1,5 +1,4 @@
 # For Testing and Deployment
-lib
 node_modules
 screenshots
 .env
