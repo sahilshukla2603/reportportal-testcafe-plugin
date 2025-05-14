@@ -19,7 +19,7 @@
   </a>
 </p></p>
 
-This is the **reportportal-plugin-v2** reporter plugin for [TestCafe](http://devexpress.github.io/testcafe).
+This is the **reportportal-plugin-sap** reporter plugin for [TestCafe](http://devexpress.github.io/testcafe).
 
 # Integrate this Reporter in your project
 
@@ -31,11 +31,11 @@ npm i testcafe-reporter-reportportal-plugin-sap@latest --save-dev
 ## Use the reporter in your TestCafe test run
 When you run tests from the command line, specify the reporter name by using the `--reporter` option:
 ```
-testcafe chrome 'path/to/test/file.js' --reporter reportportal-plugin-v2
+testcafe chrome 'path/to/test/file.js' --reporter reportportal-plugin-sap
 ```
 OR:
 ```
-testcafe chrome 'path/to/test/file.js' --reporter=reportportal-plugin-v2
+testcafe chrome 'path/to/test/file.js' --reporter=reportportal-plugin-sap
 ```
 
 When you use API, pass the reporter name to the `reporter()` method:
@@ -45,7 +45,7 @@ testCafe
     .createRunner()
     .src('path/to/test/file.js')
     .browsers('chrome')
-    .reporter('reportportal-plugin') // <-
+    .reporter('reportportal-plugin-sap') // <-
     .run();
 ```
 
@@ -55,7 +55,7 @@ testCafe
 | -------- | ---------- | --------------------------------------------------------------------------------------------------------------- | ------------------------------- |
 | Yes      | rdomain    | The domain of the report portal. https://{domain}/                                                              | --rdomain=reports.pl.portal.com |
 | Yes      | rtoken     | The token to auth report portal with. Taken from the 'Profile' of your user.                                    | --rtoken=gfkbv5994350mg         |
-| No       | description| An optional parameter to add description in the for the report portal                                           | --rdescription=ABCD             |
+| Yes      | description| The description to add in the report portal run                                                                 | --rdescription=ABCD             |
 | Yes      | rlaunch    | The name of your launch. Required (Unless replaced by rlaunch-id argument).                                     | --rlaunch=my-launch             |
 | Yes      | rproject   | The name of your project.                                                                                       | --rproject=my-project           |
 | No       | rlaunch-id | The ID of an existing launch, can replace the rlaunch parameter.                                                | --rlaunch-id=fjvkdnvjgnf        |

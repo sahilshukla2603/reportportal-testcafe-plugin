@@ -31,7 +31,7 @@ describe('Performing E2E testing', async function() {
         const failedCount = await runner
         .src(['tests/unit/unit.testcafe.ts'])
         .browsers([`${cliArguments.browser}`])
-        .reporter('reportportal-plugin')
+        .reporter('reportportal-plugin-sap')
         .run();
         expect(failedCount).to.eql(1, 'The count of failed testcafe tests')
         console.log('Tests failed: ' + failedCount);
@@ -41,7 +41,7 @@ describe('Performing E2E testing', async function() {
         const failedCount = await runner
         .src(['tests/unit/unit.retry.testcafe.ts'])
         .browsers([`${cliArguments.browser}`])
-        .reporter('reportportal-plugin')
+        .reporter('reportportal-plugin-sap')
         .run();
         
         expect(failedCount).to.eql(0, 'The count of failed testcafe tests')
