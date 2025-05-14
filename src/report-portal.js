@@ -11,6 +11,8 @@ class ReportPortal {
             throw new Error('Missing argument --rlaunch/--rlaunch-id');
         if (!cliArguments.rproject)
             throw new Error('Missing argument --rproject');
+        if (!cliArguments.rdescription)
+            throw new Error('Missing argument --rdescription');
 
         this.liveReporting = process.argv.find(arg => arg === '--disable-live-reporting') === undefined;
         this.displayDebugLogs = process.argv.find(arg => arg === '--display-debug-logs') !== undefined;
@@ -23,6 +25,7 @@ class ReportPortal {
         this.connected = true;
         this.launchName = cliArguments.rlaunch;
         this.projectName = cliArguments.rproject;
+        this.description = cliArguments.rdescription;
         if (cliArguments.rsuite) {
             this.suiteName = cliArguments.rsuite;
             this.suiteStatus = 'passed';
@@ -54,7 +57,7 @@ class ReportPortal {
             this.launch = await this.client.createLaunch(this.projectName, {
                 name:        this.launchName,
                 startTime:   this.client.now(),
-                description: `Running ${this.launchName} tests`,
+                description: this.description,
             });
         }
         else
