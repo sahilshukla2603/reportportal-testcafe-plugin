@@ -22,21 +22,22 @@ class ReportPortal {
             apiPath: '/api',
             token: cliArguments.rtoken,
         });
-        this.rdescription=this.rdescription.replace("≈","=");
-        
+
+
 
         const attributes = cliArguments.rattributes
         this.attributesList = [];
         if (typeof attributes === 'string' && attributes.trim() !== '') {
             this.attributesList = attributes.split('|').map(pair => {
                 const [key, value] = pair.split(':');
-                return { "key" : key, "value" : value, "system": false };
+                return { "key": key, "value": value, "system": false };
             });
         }
         this.connected = true;
         this.launchName = cliArguments.rlaunch;
         this.projectName = cliArguments.rproject;
         this.description = cliArguments.rdescription;
+        this.rdescription = this.rdescription.replace("≈", "=");
         if (cliArguments.rsuite) {
             this.suiteName = cliArguments.rsuite;
             this.suiteStatus = 'passed';
@@ -96,8 +97,8 @@ class ReportPortal {
     async finishLaunch() {
         if (this.suiteName)
             await this.finishSuite(this.suite.id, this.suiteStatus);
-        if (this.launchName){
-            await this.client.finishLaunch(this.projectName, this.launch.id, { endTime: this.client.now(), "attributes" : this.attributesList }); // Added option to add attributes in the launch
+        if (this.launchName) {
+            await this.client.finishLaunch(this.projectName, this.launch.id, { endTime: this.client.now(), "attributes": this.attributesList }); // Added option to add attributes in the launch
         }
     }
 
