@@ -1,6 +1,6 @@
 {
   "name": "testcafe-reporter-reportportal-plugin-sap",
-  "version": "0.1.1",
+  "version": "0.1.4",
   "description": "Report Portal TestCafe reporter",
   "repository": "https://github.com/sahilshukla2603/reportportal-testcafe-plugin",
   "author": {
@@ -12,7 +12,7 @@
     "lib"
   ],
   "scripts": {
-    "build": "babel src -d lib",
+    "build": "npm i && babel src -d lib ",
     "test": "mocha -r ts-node/register",
     "lint": "eslint .",
     "jshint": "jshint src",

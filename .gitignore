@@ -6,3 +6,5 @@ screenshots
 # For Docker Compose
 docker-compose.yml
 data 
+package.json
+.vscode/launch.json

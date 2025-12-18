@@ -37,7 +37,7 @@ class ReportPortal {
         this.launchName = cliArguments.rlaunch;
         this.projectName = cliArguments.rproject;
         this.description = cliArguments.rdescription;
-        this.rdescription = this.rdescription.replace("≈", "=");
+        this.description = String(this.description).replaceAll("≈", "="); // This has been added to replace the "≈"(Almost equals) to "=" (Equals to) in description 
         if (cliArguments.rsuite) {
             this.suiteName = cliArguments.rsuite;
             this.suiteStatus = 'passed';
@@ -70,6 +70,7 @@ class ReportPortal {
                 name: this.launchName,
                 startTime: this.client.now(),
                 description: this.description,
+                "attributes": this.attributesList // Added option to add attributes in the launch
             });
         }
         else
@@ -98,7 +99,7 @@ class ReportPortal {
         if (this.suiteName)
             await this.finishSuite(this.suite.id, this.suiteStatus);
         if (this.launchName) {
-            await this.client.finishLaunch(this.projectName, this.launch.id, { endTime: this.client.now(), "attributes": this.attributesList }); // Added option to add attributes in the launch
+            await this.client.finishLaunch(this.projectName, this.launch.id, { endTime: this.client.now()});
         }
     }
 
