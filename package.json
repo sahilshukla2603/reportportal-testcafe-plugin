@@ -1,6 +1,6 @@
 {
   "name": "testcafe-reporter-reportportal-plugin-sap",
-  "version": "0.1.4",
+  "version": "1.0.0",
   "description": "Report Portal TestCafe reporter",
   "repository": "https://github.com/sahilshukla2603/reportportal-testcafe-plugin",
   "author": {
