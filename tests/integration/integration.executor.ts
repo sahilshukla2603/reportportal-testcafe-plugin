@@ -51,4 +51,17 @@ describe('Performing Integration testing', async function() {
         expect(failedCount).to.eql(0, 'The count of failed testcafe tests')
         console.log('Tests failed: ' + failedCount);
     });
+
+    it('Attributes Integration Tests', async () => {
+        cliArguments.rlaunch="Attributes Integration Tests"
+        const runner = testcafeServer.createRunner();
+        const failedCount = await runner
+        .src(['tests/integration/integration.attributes.testcafe.ts'])
+        .browsers([`${cliArguments.browser}`])
+        .reporter('reportportal-plugin-sap')
+        .run();
+        
+        expect(failedCount).to.eql(0, 'The count of failed testcafe tests for attributes')
+        console.log('Tests failed: ' + failedCount);
+    });
 });

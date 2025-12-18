@@ -13,8 +13,17 @@ export const mock: Route[] = [{
 },{
     path: '/api/v1/tmp/113/finish',
     method: 'put',
-    response: {
-        id: 113
+    response: (req: Request) => {
+        // Validate attributes are being sent correctly
+        if (req.body.attributes && Array.isArray(req.body.attributes)) {
+            process.stdout.write(`[Server] Launch finished with ${req.body.attributes.length} attributes\n`);
+            req.body.attributes.forEach(attr => {
+                process.stdout.write(`[Server] Attribute: ${attr.key}:${attr.value} (system: ${attr.system})\n`);
+            });
+        }
+        return {
+            id: 113
+        }
     }
 },{
     path: '/api/v1/tmp/item',
@@ -54,8 +63,17 @@ export const mock: Route[] = [{
 },{
     path: '/api/v1/retry/113/finish',
     method: 'put',
-    response: {
-        id: 113
+    response: (req: Request) => {
+        // Validate attributes are being sent correctly
+        if (req.body.attributes && Array.isArray(req.body.attributes)) {
+            process.stdout.write(`[Server] Launch finished with ${req.body.attributes.length} attributes\n`);
+            req.body.attributes.forEach(attr => {
+                process.stdout.write(`[Server] Attribute: ${attr.key}:${attr.value} (system: ${attr.system})\n`);
+            });
+        }
+        return {
+            id: 113
+        }
     }
 },{
     path: '/api/v1/retry/item',

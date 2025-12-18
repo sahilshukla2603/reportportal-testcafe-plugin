@@ -1,8 +1,8 @@
 const RPClient = require('./api');
 const cliArguments = require('cli-argument-parser').cliArguments;
 
-class ReportPortal { 
-    constructor () {
+class ReportPortal {
+    constructor() {
         if (!cliArguments.rdomain)
             throw new Error('Missing argument --rdomain');
         if (!cliArguments.rtoken)
@@ -17,11 +17,22 @@ class ReportPortal {
         this.liveReporting = process.argv.find(arg => arg === '--disable-live-reporting') === undefined;
         this.displayDebugLogs = process.argv.find(arg => arg === '--display-debug-logs') !== undefined;
         this.client = new RPClient({
-            protocol: (cliArguments.rprotocol) ? cliArguments.rprotocol: 'https',
-            domain:   cliArguments.rdomain,
-            apiPath:  '/api',
-            token:    cliArguments.rtoken,
+            protocol: (cliArguments.rprotocol) ? cliArguments.rprotocol : 'https',
+            domain: cliArguments.rdomain,
+            apiPath: '/api',
+            token: cliArguments.rtoken,
         });
+        this.rdescription=this.rdescription.replace("≈","=");
+        
+
+        const attributes = cliArguments.rattributes
+        this.attributesList = [];
+        if (typeof attributes === 'string' && attributes.trim() !== '') {
+            this.attributesList = attributes.split('|').map(pair => {
+                const [key, value] = pair.split(':');
+                return { "key" : key, "value" : value, "system": false };
+            });
+        }
         this.connected = true;
         this.launchName = cliArguments.rlaunch;
         this.projectName = cliArguments.rproject;
@@ -35,11 +46,11 @@ class ReportPortal {
     /**
      * Verifying the connection to Report Portal
      */
-    async verifyConnection () {
+    async verifyConnection() {
         try {
             await this.client.checkConnect();
             this.connected = true;
-        } 
+        }
         catch (error) {
             console.log('Error connection to the Report Portal server');
             console.dir(error);
@@ -50,13 +61,13 @@ class ReportPortal {
     /**
      * Starting a new launch
      */
-    async startLaunch () {
+    async startLaunch() {
         await this.verifyConnection();
         if (!this.connected) throw Error(`Cannot connect to report portal server on '${this.client.baseURL}'`);
         if (this.launchName) {
             this.launch = await this.client.createLaunch(this.projectName, {
-                name:        this.launchName,
-                startTime:   this.client.now(),
+                name: this.launchName,
+                startTime: this.client.now(),
                 description: this.description,
             });
         }
@@ -70,35 +81,36 @@ class ReportPortal {
      * Creating a new suite
      * @param {*} name The name of the suite
      */
-    async startSuite (name) {
+    async startSuite(name) {
         this.suite = await this.client.createTestItem(this.projectName, {
             launchUuid: this.launch.id,
-            name:       name,
-            startTime:  this.client.now(),
-            type:       'SUITE'
+            name: name,
+            startTime: this.client.now(),
+            type: 'SUITE'
         });
     }
 
     /**
      * Finishing a launch
      */
-    async finishLaunch () {
+    async finishLaunch() {
         if (this.suiteName)
             await this.finishSuite(this.suite.id, this.suiteStatus);
-        if (this.launchName)
-            await this.client.finishLaunch(this.projectName, this.launch.id, { endTime: this.client.now() });
+        if (this.launchName){
+            await this.client.finishLaunch(this.projectName, this.launch.id, { endTime: this.client.now(), "attributes" : this.attributesList }); // Added option to add attributes in the launch
+        }
     }
 
     /**
      * Starting a new test
      * @param {*} name The name of the test
      */
-    async startTest (name) {
+    async startTest(name) {
         const options = {
             launchUuid: this.launch.id,
-            name:       name,
-            startTime:  this.client.now(),
-            type:       'TEST'
+            name: name,
+            startTime: this.client.now(),
+            type: 'TEST'
         };
 
         //Incase the test needs to be under a suite
@@ -113,7 +125,7 @@ class ReportPortal {
      * @param {*} testId The id of the test 
      * @param {*} status The final status of the test
      */
-    async finishTest (testId, status) {
+    async finishTest(testId, status) {
         const options = {
             launchUuid: this.launch.id,
             status: status,
@@ -137,11 +149,11 @@ class ReportPortal {
      * @param {*} suiteId The id of the suite 
      * @param {*} status The final status of the suite
      */
-    async finishSuite (suiteId, status) {
+    async finishSuite(suiteId, status) {
         await this.client.finishTestItem(this.projectName, suiteId, {
             launchUuid: this.launch.id,
-            status:     status,
-            endTime:    this.client.now()
+            status: status,
+            endTime: this.client.now()
         });
     }
 
@@ -153,21 +165,21 @@ class ReportPortal {
      * @param {*} time The time it was sent/written. Default: current time.
      * @param {*} retry The retry attempts count. Default: 3
      */
-    async sendTestLogs (testId, level, message, time = this.client.now(), attachment = undefined, retry = 3) {
+    async sendTestLogs(testId, level, message, time = this.client.now(), attachment = undefined, retry = 3) {
         try {
-            if(this.displayDebugLogs === true)
+            if (this.displayDebugLogs === true)
                 process.stdout.write(`\n[Test ${testId}] Sending log: ${message} \n`);
             await this.client.sendLog(this.projectName, {
-                itemUuid:   testId,
+                itemUuid: testId,
                 launchUuid: this.launch.id,
-                level:      level,
-                message:    message,
-                time:       time,
-                file:       attachment
+                level: level,
+                message: message,
+                time: time,
+                file: attachment
             });
-        } 
+        }
         catch (error) {
-            if(retry - 1 > 0)
+            if (retry - 1 > 0)
                 await this.sendTestLogs(testId, level, message, time, attachment, retry - 1);
             else
                 this.client.handleError(error);

@@ -5,16 +5,16 @@
   <a href='https://npmjs.org/package/testcafe-reporter-reportportal-plugin-sap' style='width:25px;height:20px;'>
     <img src='https://img.shields.io/npm/dm/testcafe-reporter-reportportal-plugin.svg?color=blue&style=plastic' target='_blank' />
   </a>
-  <a href='https://github.com/danitseitlin/reportportal-testcafe-plugin-v2/issues' style='width:25px;height:20px;'>
-    <img src='https://img.shields.io/github/issues/danitseitlin/reportportal-testcafe-plugin?style=plastic' target='_blank' />
+  <a href='https://github.com/sahilshukla2603/reportportal-testcafe-plugin-v2/issues' style='width:25px;height:20px;'>
+    <img src='https://img.shields.io/github/issues/sahilshukla2603/reportportal-testcafe-plugin?style=plastic' target='_blank' />
   </a>
   <a href='https://npmjs.org/package/testcafe-reporter-reportportal-plugin-sap' style='width:25px;height:20px;'>
     <img src='https://img.shields.io/bundlephobia/min/testcafe-reporter-reportportal-plugin/latest?style=plastic' target='_blank' />
   </a>
-  <a href='https://github.com/danitseitlin/reportportal-testcafe-plugin-v2/commits/master'>
-    <img src='https://img.shields.io/github/last-commit/danitseitlin/reportportal-testcafe-plugin?style=plastic' />
+  <a href='https://github.com/sahilshukla2603/reportportal-testcafe-plugin-v2/commits/master'>
+    <img src='https://img.shields.io/github/last-commit/sahilshukla2603/reportportal-testcafe-plugin?style=plastic' />
   </a>
-  <a href='https://github.com/danitseitlin/reportportal-testcafe-plugin-v2/blob/master/LICENSE'>
+  <a href='https://github.com/sahilshukla2603/reportportal-testcafe-plugin-v2/blob/master/LICENSE'>
     <img src='https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=plastic' target='_blank' />
   </a>
 </p></p>
@@ -61,11 +61,12 @@ testCafe
 | No       | rlaunch-id | The ID of an existing launch, can replace the rlaunch parameter.                                                | --rlaunch-id=fjvkdnvjgnf        |
 | No       | rsuite     | An optional suite name, adding a suite will put all tests under the suite instead of directly under the launch. | --rsuite=my-suite-name          |
 | No       | rprotocol  | An optional ability to override the protocol of the API protocol. {protocol}://{domain}/.                       | --rprotocol=http                |
+| No       | rattributes| An optional ability to add attributes/tags to the launch for filtering and categorization in Report Portal.     | --rattributes=key:value\|type:smoke |
 | No       | disable-live-reporting | An optional ability to disable the live reporting                                                   | --disable-live-reporting        |
 
 
 # Testing
-Please go to the [Testing section](https://github.com/danitseitlin/reportportal-testcafe-plugin-v2/blob/master/CONTRIBUTING.md#running-tests) in the Contributing README file
+Please go to the [Testing section](https://github.com/sahilshukla2603/reportportal-testcafe-plugin-v2/blob/master/CONTRIBUTING.md#running-tests) in the Contributing README file
 
 # Interested in contributing?
-Please read our contributing guidelines [here](https://github.com/danitseitlin/reportportal-testcafe-plugin-v2/blob/master/CONTRIBUTING.md)
+Please read our contributing guidelines [here](https://github.com/sahilshukla2603/reportportal-testcafe-plugin-v2/blob/master/CONTRIBUTING.md)

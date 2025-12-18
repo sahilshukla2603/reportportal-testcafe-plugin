@@ -47,4 +47,37 @@ describe('Performing E2E testing', async function() {
         expect(failedCount).to.eql(0, 'The count of failed testcafe tests')
         console.log('Tests failed: ' + failedCount);
     });
+
+    it('Attributes functionality Tests', async () => {
+        const runner = testcafeServer.createRunner();
+        const failedCount = await runner
+        .src(['tests/unit/unit.attributes.testcafe.ts'])
+        .browsers([`${cliArguments.browser}`])
+        .reporter('reportportal-plugin-sap')
+        .run();
+        
+        expect(failedCount).to.eql(0, 'The count of failed testcafe tests for attributes')
+        console.log('Tests failed: ' + failedCount);
+    });
+
+    it('Suite functionality Tests', async () => {
+        // Save original rsuite value
+        const originalSuite = cliArguments.rsuite;
+        
+        // Set suite name for this test
+        cliArguments.rsuite = 'Test Suite';
+        
+        const runner = testcafeServer.createRunner();
+        const failedCount = await runner
+        .src(['tests/unit/unit.suite.testcafe.ts'])
+        .browsers([`${cliArguments.browser}`])
+        .reporter('reportportal-plugin-sap')
+        .run();
+        
+        // Restore original value
+        cliArguments.rsuite = originalSuite;
+        
+        expect(failedCount).to.eql(0, 'The count of failed testcafe tests for suite')
+        console.log('Tests failed: ' + failedCount);
+    });
 });

@@ -109,7 +109,8 @@ class API {
      */
     async finishTestItem (projectName, testItemId, options) {
         try {
-            return this.handleResponse(await this.client.put(`/v1/${projectName}/item/${testItemId}`, options));
+            await this.handleResponse(await this.client.put(`/v1/${projectName}/item/${testItemId}`, options));
+            return this.handleResponse(await this.client.put(`/v1/${projectName}/item`,{"issues":[{"testItemId":testItemId,"issue":{"issueType":"ti001"}}]})); //@Sahil  Shukla - Added code for Changing the status as 'To Investigate'
         }
         catch (error) {
             return this.handleError(error);
